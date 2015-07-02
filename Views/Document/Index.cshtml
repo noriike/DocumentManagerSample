@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "文書管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h2>文書管理</h2>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">検索条件</div>
+    <div class="panel-body">
+        <form>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="検索キーワードを入れてください">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox1" value="option1"> 仮保存
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox2" value="option2"> 確定
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox3" value="option3"> 削除
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox1" value="option1"> 自分が作成した文書以外も検索
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-4">
+                        <button class="btn btn-info"><i class="glyphicon glyphicon-refresh"></i> 検索</button>
+                    </div>
+                    @*  *@
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-8">
+            <div class="dataTables_length" id="example_length">
+                <label>
+                    <select name="example_length" aria-controls="example" size="1">
+                        <option selected="selected" value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select> 件ずつ
+                </label>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="dataTables_length" id="example_length">
+                <select name="example_length" aria-controls="example" size="1">
+                    <option selected="selected" value="koiujyun">最終更新日時（降順）</option>
+                    <option value="syoujyunn">最終更新日時（昇順）</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr role="row">
+                    <th tabindex="0" class="sorting" role="columnheader" aria-controls="example" style="width: 179px;" aria-label="Rendering engine: activate to sort column ascending" rowspan="1" colspan="1">文書名</th>
+                    <th tabindex="0" class="sorting_desc" role="columnheader" aria-controls="example" style="width: 261px;" aria-label="Browser: activate to sort column ascending" aria-sort="descending" rowspan="1" colspan="1">状況</th>
+                    <th tabindex="0" class="sorting" role="columnheader" aria-controls="example" style="width: 240px;" aria-label="Platform(s): activate to sort column ascending" rowspan="1" colspan="1">作成者</th>
+                    <th tabindex="0" class="sorting" role="columnheader" aria-controls="example" style="width: 154px;" aria-label="Engine version: activate to sort column ascending" rowspan="1" colspan="1">最終更新日時</th>
+                </tr>
+            </thead>
+
+            <tbody role="alert" aria-live="polite" aria-relevant="all">
+                <tr class="gradeA odd">
+                    <td>診療情報提供書_テスト患者</td>
+                    <td class="  sorting_1">仮保存</td>
+                    <td class=" ">テスト　医師</td>
+                    <td class="center ">2015/01/22 10:10</td>
+                </tr>
+                <tr class="gradeA">
+                    <td>診療情報提供書_テスト患者</td>
+                    <td class="  sorting_1">仮保存</td>
+                    <td class=" ">テスト　医師</td>
+                    <td class="center ">2015/01/22 10:10</td>
+                </tr>
+                <tr class="gradeA odd">
+                    <td>診療情報提供書_テスト患者</td>
+                    <td class="  sorting_1">仮保存</td>
+                    <td class=" ">テスト　医師</td>
+                    <td class="center ">2015/01/22 10:10</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
