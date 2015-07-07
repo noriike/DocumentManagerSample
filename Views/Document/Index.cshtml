@@ -1,6 +1,9 @@
-﻿@{
+﻿@model DocumentManagerSample.Models.IndexModel
+
+@{
     ViewBag.Title = "文書管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div class="page-header">
@@ -9,11 +12,17 @@
 
 <div class="row">
     <div class="form-group col-lg-1 col-md-offset-10">
-        <button type="button" class="btn btn-warning glyphicon glyphicon-pencil"> 作成</button>
+        <button type="button" class="btn btn-warning glyphicon glyphicon-pencil">　作成</button>
     </div>
 </div>
 
 
+@using (Ajax.BeginForm("Search", "Document",
+                                            new AjaxOptions { 
+                                                UpdateTargetId="DocListHolder",
+                                                LoadingElementId="loading"
+                                            }))
+{
     <div class="form-group panel panel-default">
         <div class="panel-heading">検索条件</div>
         <div class="panel-body">
@@ -21,6 +30,19 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="検索キーワードを入れてください">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">カテゴリ</span>
+
+                            @Html.DropDownListFor(model => model.category.id,
+                                                new SelectList(Model.lstCategory, "id", "categoryName"), "指定なし",
+                                                new { @class = "form-control" })
+
+                        </div>
                     </div>
                 </div>
 
@@ -41,29 +63,20 @@
                             </label>
                         </div>
 
-
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="#">
-                                <i class="glyphicon glyphicon-search"></i>  検 索
-                            </a>
-                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#"><i class="glyphicon glyphicon-ok"></i> オプション１</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-remove"></i> オプション２</a></li>
-                                <li><a href="#"><i class="glyphicon glyphicon-pencil"></i> オプション３</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#"><i class="i"></i>オプション４</a></li>
-                            </ul>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="glyphicon glyphicon-search"></i> 検 索
+                            </button>
                         </div>
                     </div>
                 </div>
-
-
             </form>
         </div>
+        
     </div>
+
+    <img id="loading" src="~/Content/images/DSC_0218.jpg" />
+}
 
 <div class="form-inline">
     <div class="row">
@@ -90,40 +103,8 @@
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <table class="table table-striped">
-            <thead>
-                <tr role="row">
-                    <th tabindex="0" class="sorting" role="columnheader" aria-controls="example" style="width: 179px;" aria-label="Rendering engine: activate to sort column ascending" rowspan="1" colspan="1">文書名</th>
-                    <th tabindex="0" class="sorting_desc" role="columnheader" aria-controls="example" style="width: 261px;" aria-label="Browser: activate to sort column ascending" aria-sort="descending" rowspan="1" colspan="1">状況</th>
-                    <th tabindex="0" class="sorting" role="columnheader" aria-controls="example" style="width: 240px;" aria-label="Platform(s): activate to sort column ascending" rowspan="1" colspan="1">作成者</th>
-                    <th tabindex="0" class="sorting" role="columnheader" aria-controls="example" style="width: 154px;" aria-label="Engine version: activate to sort column ascending" rowspan="1" colspan="1">最終更新日時</th>
-                </tr>
-            </thead>
-
-            <tbody role="alert" aria-live="polite" aria-relevant="all">
-                <tr class="gradeA odd">
-                    <td>診療情報提供書_テスト患者</td>
-                    <td class="  sorting_1">仮保存</td>
-                    <td class=" ">テスト　医師</td>
-                    <td class="center ">2015/01/22 10:10</td>
-                </tr>
-                <tr class="gradeA">
-                    <td>診療情報提供書_テスト患者</td>
-                    <td class="  sorting_1">仮保存</td>
-                    <td class=" ">テスト　医師</td>
-                    <td class="center ">2015/01/22 10:10</td>
-                </tr>
-                <tr class="gradeA odd">
-                    <td>診療情報提供書_テスト患者</td>
-                    <td class="  sorting_1">仮保存</td>
-                    <td class=" ">テスト　医師</td>
-                    <td class="center ">2015/01/22 10:10</td>
-                </tr>
-            </tbody>
-        </table>
-
+<div>
+    <div id="DocListHolder">
     </div>
 </div>
 

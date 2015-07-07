@@ -13,7 +13,19 @@ namespace DocumentManagerSample.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            DocumentManagerSample.Models.IndexModel model = new DocumentManagerSample.Models.IndexModel();
+
+            model.lstCategory.Add(new Models.IndexModel.Category("1","診療情報提供書A"));
+            model.lstCategory.Add(new Models.IndexModel.Category("2", "返書"));
+            model.lstCategory.Add(new Models.IndexModel.Category("3", "診療情報提供書B"));
+
+            return View(model);
+        }
+
+        public ActionResult Search()
+        {
+
+            return PartialView("Search");
         }
 
     }
